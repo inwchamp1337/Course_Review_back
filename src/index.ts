@@ -1,12 +1,7 @@
-import { Elysia } from "elysia";
+import { app } from './app.ts' // นำเข้าจากการ export โดยตรง
 
-const app = new Elysia()
+const PORT = process.env.PORT || 3000
 
-
-app
-  .get("/", () => "Hello Elysia")
-  .listen(8000);
-
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+app.listen(PORT, () => {
+  console.log(`🦊 Server is running on port ${PORT}`)
+})

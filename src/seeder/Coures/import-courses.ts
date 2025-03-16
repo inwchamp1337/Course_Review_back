@@ -7,15 +7,15 @@ const prisma = new PrismaClient();
 async function importCourses() {
     const courses = [];
 
-    fs.createReadStream('course_details.csv') // 👈 ใส่ชื่อไฟล์ CSV ของคุณ
+    fs.createReadStream('kmitlcored.csv') // 👈 ใส่ชื่อไฟล์ CSV ของคุณ
         .pipe(csv())
         .on('data', (row) => {
             courses.push({
-                course_id: parseInt(row['Subject Code (TH)']),
-                course_id_INT: parseInt(row['Subject Code (INTER)']),
-                nameTH: row['Course Name'],
-                name: row['Course Name'],
-                description: row['Course Name (TH)']
+                course_id: parseInt(row['Course Code (TH)']),
+                course_id_INT: parseInt(row['Course Code (INTER)']),
+                nameTH: row['Course Name (TH)'],
+                name: row['Course Name (EN)'],
+                description: row['Description']
             });
         })
         .on('end', async () => {
