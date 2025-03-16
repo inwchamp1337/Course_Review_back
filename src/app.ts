@@ -4,17 +4,7 @@ import { cors } from '@elysiajs/cors' // <-- นำเข้า cors
 import { api } from './routes/api.ts'
 
 export const app = new Elysia()
-    // เปิดใช้งาน CORS ก่อนตัวอื่น
-    .use(
-        cors({
-            origin: true,
-            allowedHeaders: [
-                'Content-Type',
-                'ngrok-skip-browser-warning' // เพิ่ม header นี้
-            ],
-            methods: ['GET', 'POST', 'PUT', 'DELETE']
-        })
-    )
+    .use(cors()) // เปิดใช้งาน CORS ก่อนตัวอื่น
     .use(
         swagger({
             path: '/docs',
