@@ -1,0 +1,49 @@
+// schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id          Int        @id @default(autoincrement())
+  course_id   Int        @unique
+  course_id_INT  Int?    @unique
+  name            String
+  nameTH        String
+  description String?
+  image       String?
+  reviews     Review[]
+  questions   Question[]
+}
+
+model Review {
+  id             Int     @id @default(autoincrement())
+  reviewerName   String
+  reviewText     String
+  homeScore      Int     @db.SmallInt
+  interestScore  Int     @db.SmallInt
+  grade          String
+  academicYear   String
+  section        String
+  course         Course  @relation(fields: [courseId], references: [id])
+  courseId       Int
+}
+
+model Question {
+  id           Int      @id @default(autoincrement())
+  questionText String
+  course       Course   @relation(fields: [courseId], references: [id])
+  courseId     Int
+  answers      Answer[]
+}
+
+model Answer {
+  id          Int      @id @default(autoincrement())
+  answerText  String
+  question    Question @relation(fields: [questionId], references: [id])
+  questionId  Int
+}
