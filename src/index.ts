@@ -1,7 +1,10 @@
-import { app } from './app.ts' // นำเข้าจากการ export โดยตรง
+import { app } from './app.ts' // นำเข้าจาก app.ts
 
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT, () => {
-  console.log(`🦊 Server is running on port ${PORT}`)
+app.listen({
+  port: Number(PORT),
+  hostname: "0.0.0.0" // ✅ สำคัญ! เพื่อให้ Docker เข้าถึงได้
 })
+
+console.log(`🦊 Server is running on port ${PORT}`)
