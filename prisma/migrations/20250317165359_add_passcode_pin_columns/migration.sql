@@ -7,6 +7,8 @@ CREATE TABLE "Course" (
     "nameTH" TEXT NOT NULL,
     "description" TEXT,
     "image" TEXT,
+    "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3),
 
     CONSTRAINT "Course_pkey" PRIMARY KEY ("id")
 );
@@ -22,6 +24,9 @@ CREATE TABLE "Review" (
     "academicYear" TEXT NOT NULL,
     "section" TEXT NOT NULL,
     "courseId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3),
+    "passcode_pin" TEXT,
 
     CONSTRAINT "Review_pkey" PRIMARY KEY ("id")
 );
@@ -30,7 +35,11 @@ CREATE TABLE "Review" (
 CREATE TABLE "Question" (
     "id" SERIAL NOT NULL,
     "questionText" TEXT NOT NULL,
+    "questionerName" TEXT,
     "courseId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3),
+    "passcode_pin" TEXT,
 
     CONSTRAINT "Question_pkey" PRIMARY KEY ("id")
 );
@@ -39,7 +48,11 @@ CREATE TABLE "Question" (
 CREATE TABLE "Answer" (
     "id" SERIAL NOT NULL,
     "answerText" TEXT NOT NULL,
+    "answererName" TEXT,
     "questionId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3),
+    "passcode_pin" TEXT,
 
     CONSTRAINT "Answer_pkey" PRIMARY KEY ("id")
 );

@@ -20,5 +20,17 @@ export const QuestionService = {
         } catch (error) {
             throw new Error('Failed to fetch reviews');
         }
+    },
+
+    delete: async (id: number) => {
+        try {
+            // Delete question by id
+            const deletedQuestion = await prisma.question.delete({
+                where: { id }
+            });
+            return deletedQuestion; // Return the deleted question
+        } catch (error) {
+            throw new Error('Failed to delete question');
+        }
     }
 }

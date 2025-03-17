@@ -17,6 +17,8 @@ model Course {
   image       String?
   reviews     Review[]
   questions   Question[]
+  createdAt   DateTime?  @default(now()) // เพิ่มวันที่และเวลาที่สร้าง
+  updatedAt   DateTime?  @updatedAt      // วันที่และเวลาที่อัพเดต
 }
 
 model Review {
@@ -30,6 +32,9 @@ model Review {
   section        String
   course         Course  @relation(fields: [courseId], references: [course_id])
   courseId       Int
+  createdAt      DateTime? @default(now()) // เพิ่มวันที่และเวลาที่สร้าง
+  updatedAt      DateTime? @updatedAt      // วันที่และเวลาที่อัพเดต
+  passcode_pin String?  // เพิ่มบรรทัดนี้
 }
 
 model Question {
@@ -39,6 +44,9 @@ model Question {
   course       Course   @relation(fields: [courseId], references: [course_id])
   courseId     Int
   answers      Answer[]
+  createdAt    DateTime? @default(now()) // เพิ่มวันที่และเวลาที่สร้าง
+  updatedAt    DateTime? @updatedAt      // วันที่และเวลาที่อัพเดต
+  passcode_pin String?  // เพิ่มบรรทัดนี้
 }
 
 model Answer {
@@ -47,4 +55,7 @@ model Answer {
   answererName String?   // เพิ่ม answererName
   question     Question @relation(fields: [questionId], references: [id])
   questionId   Int
+  createdAt    DateTime? @default(now()) // เพิ่มวันที่และเวลาที่สร้าง
+  updatedAt    DateTime? @updatedAt      // วันที่และเวลาที่อัพเดต
+  passcode_pin String?  // เพิ่มบรรทัดนี้
 }

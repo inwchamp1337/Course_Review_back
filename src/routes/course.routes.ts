@@ -37,7 +37,8 @@ export const courseRoutes = new Elysia({ prefix: '/courses' })
             body: t.Object({
                 course_id: t.Number(),
                 name: t.String(),
-                nameTH: t.String()
+                nameTH: t.String(),
+                passcode_pin: t.String()
             }),
             detail: {
                 tags: ['Course'],

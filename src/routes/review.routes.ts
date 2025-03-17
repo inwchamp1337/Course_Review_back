@@ -12,7 +12,8 @@ export const reviewRoutes = new Elysia({ prefix: '/reviews' })
             interestScore: t.Number(),
             grade: t.String(),
             academicYear: t.String(),
-            section: t.String()
+            section: t.String(),
+            passcode_pin: t.String()
         })
     })
     .get('/course/:courseId', async ({ params }) =>
@@ -20,15 +21,17 @@ export const reviewRoutes = new Elysia({ prefix: '/reviews' })
         params: t.Object({ courseId: t.Numeric() })
     })
     .get('/', async () =>
-        await ReviewService.getAll(), {
-        response: t.Array(t.Object({
-            courseId: t.Number(),
-            reviewerName: t.String(),
-            reviewText: t.String(),
-            homeScore: t.Number(),
-            interestScore: t.Number(),
-            grade: t.String(),
-            academicYear: t.String(),
-            section: t.String()
-        }))
+        await ReviewService.getAll()
+    )
+    // Route ที่ใช้ในการลบรีวิว
+    .delete('/:id', async ({ params, query }) => {
+        const { passcode_pin } = query;
+        try {
+            const deletedReview = await ReviewService.delete(Number(params.id), passcode_pin);
+            return { message: 'Review deleted successfully', deletedReview };
+        } catch (error) {
+            return { message: error.message };
+        }
+
+
     })

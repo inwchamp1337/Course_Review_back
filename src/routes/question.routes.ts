@@ -7,7 +7,8 @@ export const questionRoutes = new Elysia({ prefix: '/questions' })
         body: t.Object({
             courseId: t.Number(),
             questionText: t.String(),
-            questionerName: t.String()   // เพิ่ม questionerName
+            questionerName: t.String(), // เพิ่ม questionerName
+            passcode_pin: t.String()
         })
     })
     .get('/course/:courseId', async ({ params }) =>
@@ -15,11 +16,5 @@ export const questionRoutes = new Elysia({ prefix: '/questions' })
         params: t.Object({ courseId: t.Numeric() })
     })
     .get('/', async () =>
-            await QuestionService.getAll(), {
-            response: t.Array(t.Object({
-                questionText: t.String(),
-                questionerName: t.String(),
-                courseId: t.Number(),
-                answers: t.String()
-            }))
-        })
+        await QuestionService.getAll()  // ไม่ต้องตรวจสอบการ validate
+    )

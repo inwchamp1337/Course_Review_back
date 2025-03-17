@@ -14,5 +14,18 @@ export const AnswerService = {
     create: async (questionId: number, data: any) =>
         await prisma.answer.create({
             data: { ...data, questionId }
-        })
+        }),
+
+    // ฟังก์ชันใหม่สำหรับลบคำตอบ
+    delete: async (id: number) => {
+        try {
+            // ลบคำตอบตาม id
+            const deletedAnswer = await prisma.answer.delete({
+                where: { id }
+            });
+            return deletedAnswer;  // ส่งข้อมูลของคำตอบที่ถูกลบกลับ
+        } catch (error) {
+            throw new Error('Failed to delete answer');
+        }
+    }
 }
