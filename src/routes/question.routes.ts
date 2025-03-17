@@ -18,3 +18,16 @@ export const questionRoutes = new Elysia({ prefix: '/questions' })
     .get('/', async () =>
         await QuestionService.getAll()  // ไม่ต้องตรวจสอบการ validate
     )
+    .delete('/:id', async ({ params, body }) => {
+        const { passcode_pin } = body;
+        try {
+            const deletedQuestion = await QuestionService.delete(Number(params.id), passcode_pin);
+            return { message: 'Question deleted successfully', deletedQuestion };
+        } catch (error) {
+            return { message: error.message };
+        }
+    }, {
+        body: t.Object({
+            passcode_pin: t.String()
+        })
+    });
