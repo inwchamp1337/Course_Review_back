@@ -1,19 +1,20 @@
-FROM oven/bun:1.2.5
+FROM oven/bun
 
 WORKDIR /app
 
-# ติดตั้ง system dependencies ที่จำเป็นสำหรับ Prisma
+COPY package.json .
+COPY package-lock.json ./
 
+# ติดตั้ง dependencies ทั้งหมด (Bun จะติดตั้ง devDependencies โดยอัตโนมัติ)
+RUN bun install
 
-COPY package.json bun.lockb ./
-
-# แก้ปัญหา zlib error และ cache เสีย
-RUN bun install 
-
-# คัดลอกโค้ดทั้งหมด (ควรแยกขั้นตอนไว้หลังติดตั้ง dependencies)
 COPY . .
 
-# รัน prisma generate แยกขั้นตอน
+# สร้าง Prisma Client ด้วย Bun
 RUN bunx prisma generate
 
-CMD ["bun", "src/index.ts"]
+# คัดลอก entrypoint และตั้งสิทธิ์
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+CMD ["/app/entrypoint.sh"]

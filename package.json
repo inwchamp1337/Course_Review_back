@@ -3,7 +3,7 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
     "prisma": "prisma"
   },
   "dependencies": {
@@ -11,7 +11,8 @@
     "@elysiajs/swagger": "^1.2.2",
     "@prisma/client": "^6.5.0",
     "csv-parser": "^3.2.0",
-    "elysia": "latest"
+    "elysia": "latest",
+    "nodemon": "^3.1.9"
   },
   "devDependencies": {
     "bun-types": "latest",
