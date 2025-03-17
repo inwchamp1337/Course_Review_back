@@ -6,7 +6,8 @@ export const questionRoutes = new Elysia({ prefix: '/questions' })
         await QuestionService.create(body.courseId, body), {
         body: t.Object({
             courseId: t.Number(),
-            questionText: t.String()
+            questionText: t.String(),
+            questionerName: t.String()   // เพิ่ม questionerName
         })
     })
     .get('/course/:courseId', async ({ params }) =>

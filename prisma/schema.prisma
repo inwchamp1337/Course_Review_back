@@ -35,14 +35,16 @@ model Review {
 model Question {
   id           Int      @id @default(autoincrement())
   questionText String
+  questionerName String?  // เพิ่ม questionerName
   course       Course   @relation(fields: [courseId], references: [course_id])
   courseId     Int
   answers      Answer[]
 }
 
 model Answer {
-  id          Int      @id @default(autoincrement())
-  answerText  String
-  question    Question @relation(fields: [questionId], references: [id]) // แก้ไขที่นี่
-  questionId  Int
+  id           Int      @id @default(autoincrement())
+  answerText   String
+  answererName String?   // เพิ่ม answererName
+  question     Question @relation(fields: [questionId], references: [id])
+  questionId   Int
 }

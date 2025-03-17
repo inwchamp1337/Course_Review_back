@@ -20,6 +20,7 @@ export const answerRoutes = new Elysia({ prefix: '/answers' })
     }, {
         body: t.Object({
             questionId: t.Number(),
-            answerText: t.String()
+            answerText: t.String(),
+            answererName: t.String()
         })
     })
