@@ -1,6 +1,5 @@
-// src/routes/course.routes.ts
-import { Elysia, t } from 'elysia'
-import { CourseService } from '../services/course.service.ts'
+import { Elysia, t } from 'elysia';
+import { CourseService } from '../services/course.service.ts';
 
 export const courseRoutes = new Elysia({ prefix: '/courses' })
     .get('/',
@@ -11,6 +10,23 @@ export const courseRoutes = new Elysia({ prefix: '/courses' })
                 summary: 'Get all courses',
                 responses: {
                     200: { description: 'List of all courses' }
+                }
+            }
+        }
+    )
+    // เพิ่มเส้นทางสำหรับดึงข้อมูล course โดยใช้ courseId
+    .get('/:courseId',
+        async ({ params }) => {
+            const { courseId } = params;
+            return await CourseService.getById(Number(courseId)); // ส่ง courseId ให้ Service
+        },
+        {
+            detail: {
+                tags: ['Course'],
+                summary: 'Get a course by courseId',
+                responses: {
+                    200: { description: 'Course data for the given courseId' },
+                    404: { description: 'Course not found' }
                 }
             }
         }
@@ -31,4 +47,4 @@ export const courseRoutes = new Elysia({ prefix: '/courses' })
                 }
             }
         }
-    )
+    );
