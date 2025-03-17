@@ -14,7 +14,6 @@ export const ReviewService = {
     // Get all reviews
     getAll: async () => {
         try {
-            // Using Prisma to fetch all reviews
             const reviews = await prisma.review.findMany();
             return reviews;
         } catch (error) {
@@ -22,32 +21,32 @@ export const ReviewService = {
         }
     },
 
-    // Delete a review by id
+    // Delete a review by id พร้อมตรวจสอบ passcode_pin
     delete: async (id: number, passcode_pin: string) => {
         try {
-            // ตรวจสอบคำตอบที่มี id ก่อน
-            const answer = await prisma.answer.findUnique({
+            // ค้นหา review จากฐานข้อมูลโดยใช้ id
+            const review = await prisma.review.findUnique({
                 where: { id },
             });
 
-            // ถ้าไม่พบคำตอบ ให้โยนข้อผิดพลาด
-            if (!answer) {
-                throw new Error('Answer not found');
+            // ถ้าไม่พบ review ให้โยน error
+            if (!review) {
+                throw new Error('Review not found');
             }
 
-            // ตรวจสอบว่า passcode_pin ตรงกับคำตอบหรือไม่
-            if (answer.passcode_pin !== passcode_pin) {
+            // ตรวจสอบว่า passcode_pin ที่ส่งเข้ามาตรงกับที่เก็บไว้ใน review หรือไม่
+            if (review.passcode_pin !== passcode_pin) {
                 throw new Error('Invalid passcode_pin');
             }
 
-            // ลบคำตอบ
-            const deletedAnswer = await prisma.answer.delete({
+            // ลบ review
+            const deletedReview = await prisma.review.delete({
                 where: { id }
             });
 
-            return deletedAnswer;  // ส่งข้อมูลของคำตอบที่ถูกลบกลับ
+            return deletedReview;
         } catch (error) {
-            throw new Error(`Failed to delete answer: ${error.message}`);
+            throw new Error(`Failed to delete review: ${error.message}`);
         }
     }
 }
