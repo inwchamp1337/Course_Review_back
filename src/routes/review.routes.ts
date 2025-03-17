@@ -19,3 +19,16 @@ export const reviewRoutes = new Elysia({ prefix: '/reviews' })
         await ReviewService.getByCourse(Number(params.courseId)), {
         params: t.Object({ courseId: t.Numeric() })
     })
+    .get('/', async () =>
+        await ReviewService.getAll(), {
+        response: t.Array(t.Object({
+            courseId: t.Number(),
+            reviewerName: t.String(),
+            reviewText: t.String(),
+            homeScore: t.Number(),
+            interestScore: t.Number(),
+            grade: t.String(),
+            academicYear: t.String(),
+            section: t.String()
+        }))
+    })
