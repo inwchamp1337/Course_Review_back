@@ -14,3 +14,12 @@ export const questionRoutes = new Elysia({ prefix: '/questions' })
         await QuestionService.getByCourse(Number(params.courseId)), {
         params: t.Object({ courseId: t.Numeric() })
     })
+    .get('/', async () =>
+            await QuestionService.getAll(), {
+            response: t.Array(t.Object({
+                questionText: t.String(),
+                questionerName: t.String(),
+                courseId: t.Number(),
+                answers: t.String()
+            }))
+        })

@@ -10,5 +10,15 @@ export const QuestionService = {
         await prisma.question.findMany({
             where: { courseId },
             include: { answers: true }
-        })
+        }),
+
+    getAll: async () => {
+        try {
+            // Using Prisma to fetch all reviews
+            const questions = await prisma.question.findMany();
+            return questions;
+        } catch (error) {
+            throw new Error('Failed to fetch reviews');
+        }
+    }
 }
