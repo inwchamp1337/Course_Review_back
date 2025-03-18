@@ -1,12 +1,10 @@
-import { Elysia } from "elysia";
+import { app } from './app.ts' // นำเข้าจาก app.ts
 
-const app = new Elysia()
+const PORT = process.env.PORT || 5000
 
+app.listen({
+  port: Number(PORT),
+  hostname: "0.0.0.0" // ✅ สำคัญ! เพื่อให้ Docker เข้าถึงได้
+})
 
-app
-  .get("/", () => "Hello Elysia")
-  .listen(8000);
-
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+console.log(`🦊 Server is running on port ${PORT}`)

@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id          Int        @id @default(autoincrement())
+  course_id   Int        @unique
+  course_id_INT  Int?    @unique
+  name            String
+  nameTH        String
+  description String?
+  image       String?
+  reviews     Review[]
+  questions   Question[]
+  createdAt   DateTime?  @default(now()) // เพิ่มวันที่และเวลาที่สร้าง
+  updatedAt   DateTime?  @updatedAt      // วันที่และเวลาที่อัพเดต
+}
+
+model Review {
+  id             Int     @id @default(autoincrement())
+  reviewerName   String
+  reviewText     String
+  homeScore      Int     @db.SmallInt
+  interestScore  Int     @db.SmallInt
+  grade          String
+  academicYear   String
+  section        String
+  course         Course  @relation(fields: [courseId], references: [course_id])
+  courseId       Int
+  createdAt      DateTime? @default(now()) // เพิ่มวันที่และเวลาที่สร้าง
+  updatedAt      DateTime? @updatedAt      // วันที่และเวลาที่อัพเดต
+  passcode_pin String?  // เพิ่มบรรทัดนี้
+}
+
+model Question {
+  id           Int      @id @default(autoincrement())
+  questionText String
+  questionerName String?  // เพิ่ม questionerName
+  course       Course   @relation(fields: [courseId], references: [course_id])
+  courseId     Int
+  answers      Answer[]
+  createdAt    DateTime? @default(now()) // เพิ่มวันที่และเวลาที่สร้าง
+  updatedAt    DateTime? @updatedAt      // วันที่และเวลาที่อัพเดต
+  passcode_pin String?  // เพิ่มบรรทัดนี้
+}
+
+model Answer {
+  id           Int      @id @default(autoincrement())
+  answerText   String
+  answererName String?   // เพิ่ม answererName
+  question     Question @relation(fields: [questionId], references: [id])
+  questionId   Int
+  createdAt    DateTime? @default(now()) // เพิ่มวันที่และเวลาที่สร้าง
+  updatedAt    DateTime? @updatedAt      // วันที่และเวลาที่อัพเดต
+  passcode_pin String?  // เพิ่มบรรทัดนี้
+}
