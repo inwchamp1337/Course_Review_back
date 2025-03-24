@@ -1,4 +1,4 @@
-import { app } from './app.ts' // นำเข้าจาก app.ts
+import { app } from './app' // นำเข้าจาก app.ts
 
 const PORT = process.env.PORT || 5000
 

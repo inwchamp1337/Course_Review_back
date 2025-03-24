@@ -1,4 +1,4 @@
-import prisma from '../db/client.ts'
+import prisma from '../db/client'
 
 export const CourseService = {
     getAll: async () => await prisma.course.findMany(),

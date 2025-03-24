@@ -1,4 +1,5 @@
-import prisma from '../db/client.ts'
+import prisma from '../db/client'
+import bcrypt from "bcrypt"
 
 export const ReviewService = {
     // Create a review
@@ -34,9 +35,12 @@ export const ReviewService = {
                 throw new Error('Review not found');
             }
 
-            // ตรวจสอบว่า passcode_pin ที่ส่งเข้ามาตรงกับที่เก็บไว้ใน review หรือไม่
-            if (review.passcode_pin !== passcode_pin) {
-                throw new Error('Invalid passcode_pin');
+            if (!review.passcode_pin) {
+                throw new Error("Passcode not found");
+            }
+            
+            if (!(await bcrypt.compare(passcode_pin, review.passcode_pin))) {
+                throw new Error("Invalid passcode_pin");
             }
 
             // ลบ review
@@ -46,7 +50,10 @@ export const ReviewService = {
 
             return deletedReview;
         } catch (error) {
-            throw new Error(`Failed to delete review: ${error.message}`);
+            if (error instanceof Error) {
+                throw new Error(`Failed to delete review: ${error.message}`);
+              }
+              throw error
         }
     }
 }

@@ -1,4 +1,5 @@
-import prisma from '../db/client.ts'
+import prisma from '../db/client'
+import bcrypt from "bcrypt"
 
 export const QuestionService = {
     // Create a question
@@ -42,6 +43,14 @@ export const QuestionService = {
                 throw new Error('Invalid passcode_pin');
             }
 
+            if (!question.passcode_pin) {
+                throw new Error("Passcode not found");
+            }
+                        
+            if (!(await bcrypt.compare(passcode_pin, question.passcode_pin))) {
+                throw new Error("Invalid passcode_pin");
+            }
+
             // ลบ question
             const deletedQuestion = await prisma.question.delete({
                 where: { id }
@@ -49,7 +58,10 @@ export const QuestionService = {
 
             return deletedQuestion;
         } catch (error) {
-            throw new Error(`Failed to delete question: ${error.message}`);
+            if (error instanceof Error) {
+                throw new Error(`Failed to delete review: ${error.message}`);
+              }
+              throw error
         }
     }
 };

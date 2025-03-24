@@ -1,5 +1,6 @@
 import { Elysia, t } from 'elysia';
-import { CourseService } from '../services/course.service.ts';
+import { CourseService } from '../services/course.service';
+import { hashPassword } from "../utils/hash";
 
 export const courseRoutes = new Elysia({ prefix: '/courses' })
     .get('/',
@@ -31,8 +32,14 @@ export const courseRoutes = new Elysia({ prefix: '/courses' })
             }
         }
     )
-    .post('/',
-        async ({ body }) => await CourseService.create(body),
+    .post("/",
+        async ({ body }) => {
+            // แฮช passcode_pin ก่อนบันทึก
+            body.passcode_pin = await hashPassword(body.passcode_pin);
+    
+            // บันทึกข้อมูล
+            return await CourseService.create(body);
+        },
         {
             body: t.Object({
                 course_id: t.Number(),
@@ -41,11 +48,12 @@ export const courseRoutes = new Elysia({ prefix: '/courses' })
                 passcode_pin: t.String()
             }),
             detail: {
-                tags: ['Course'],
-                summary: 'Create new course',
+                tags: ["Course"],
+                summary: "Create new course",
                 responses: {
-                    201: { description: 'Course created successfully' }
+                    201: { description: "Course created successfully" }
                 }
             }
         }
     );
+    

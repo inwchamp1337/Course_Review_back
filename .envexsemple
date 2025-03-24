@@ -1,7 +1,0 @@
-#RENAME THIS FILE TO .env THEN FILL THE GAB
-
-#DATABASE_URL ex="postgresql://postgres:1234@localhost:5432/mydb?schema=public"
-DATABASE_URL=""
-POSTGRES_USER=
-POSTGRES_PASSWORD=
-POSTGRES_DB=
