@@ -1,6 +1,6 @@
 import { app } from './app' // นำเข้าจาก app.ts
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8080
 
 app.listen({
   port: Number(PORT),

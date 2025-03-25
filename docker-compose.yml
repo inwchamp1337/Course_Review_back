@@ -23,7 +23,7 @@ services:
     environment:
       DATABASE_URL: ${DATABASE_URL}
     ports:
-      - "5000:5000" # แก้พอร์ตให้ถูกต้อง
+      - "8080:8080"
     restart: unless-stopped
 
 volumes:
