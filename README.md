@@ -35,11 +35,7 @@ KMITLCORE is a backend system designed for managing course reviews. It provides 
 ## ER DIAGRAM
 ![แdrawio](https://github.com/user-attachments/assets/2b17cabc-e06e-4a7a-99f8-843c8ae109c7)
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
-```
+---
 
 ## Getting Started
 
@@ -50,3 +46,29 @@ To quickly get started with this project, follow the steps below:
    ```bash
    git clone https://github.com/inwchamp1337/Course_Review_back.git
    cd Course_Review_back
+---
+## Environment Variables
+
+Before running the application, ensure you have set up your **.env** file. This file should include your configuration variables such as database connection strings, API keys, and other environment-specific settings.
+---
+### Create a `.env` File
+
+In the root directory of the project, create a file named **.env**.
+
+### Add Your Environment Variables
+
+Below is an example of what your **.env** file might look like:
+
+```env
+DATABASE_URL=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DB=
+```
+
+
+## Contributing
+
+Contributions are welcome! If you have any improvements or fixes, please feel free to fork the repository and submit a pull request. For any issues or suggestions, please open an issue in the GitHub repository.
+
+
