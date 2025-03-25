@@ -38,11 +38,6 @@ export const QuestionService = {
                 throw new Error('Question not found');
             }
 
-            // ตรวจสอบว่า passcode_pin ที่ส่งเข้ามาตรงกับที่เก็บไว้ใน question หรือไม่
-            if (question.passcode_pin !== passcode_pin) {
-                throw new Error('Invalid passcode_pin');
-            }
-
             if (!question.passcode_pin) {
                 throw new Error("Passcode not found");
             }
@@ -59,7 +54,7 @@ export const QuestionService = {
             return deletedQuestion;
         } catch (error) {
             if (error instanceof Error) {
-                throw new Error(`Failed to delete review: ${error.message}`);
+                throw new Error(`Failed to delete question: ${error.message}`);
               }
               throw error
         }
