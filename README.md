@@ -7,6 +7,9 @@
 ![Prisma](https://img.shields.io/badge/Prisma-%23004DFF.svg?style=for-the-badge&logo=prisma&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-%23336791.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+## ER DIAGRAM
+![แdrawio](https://github.com/user-attachments/assets/2b17cabc-e06e-4a7a-99f8-843c8ae109c7)
+
 ## Getting Started
 To get started with this template, simply paste this command into your terminal:
 ```bash
