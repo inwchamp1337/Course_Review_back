@@ -39,14 +39,53 @@ KMITLCORE is a backend system designed for managing course reviews. It provides 
 
 ## Getting Started
 
-To quickly get started with this project, follow the steps below:
+Follow these steps to set up your environment and get the project running:
 
 1. **Clone the Repository:**
 
    ```bash
    git clone https://github.com/inwchamp1337/Course_Review_back.git
    cd Course_Review_back
----
+   ```
+Install Dependencies:
+
+If you're using Bun as your runtime, install the required dependencies:
+
+    ```bash
+
+    bun install
+    ```
+
+
+Set Up Prisma:
+
+Ensure Your Database URL is Correct:
+Update the DATABASE_URL in your .env file with the correct connection string to your PostgreSQL database.
+
+Run Database Migrations:
+Create the initial database schema by running:
+
+    ```bash
+
+    npx prisma migrate dev --name init
+    Generate the Prisma Client:
+    Generate the Prisma client to interact with your database:
+    ```
+
+    ```bash
+    npx prisma generate
+    Start the Development Server:
+    ```
+Run the following command to start your development server:
+
+    ```bash
+    คัดลอก
+    แก้ไข
+    bun run dev
+    Access the Application:
+    ```
+Open your browser and navigate to http://localhost:3000 to see your application in action.
+
 ## Environment Variables
 
 Before running the application, ensure you have set up your **.env** file. This file should include your configuration variables such as database connection strings, API keys, and other environment-specific settings.
