@@ -1,9 +1,16 @@
 import { Elysia, t } from 'elysia'
-import { ReviewService } from '../services/review.service.ts'
+import { ReviewService } from '../services/review.service'
+import { hashPassword } from "../utils/hash";
 
 export const reviewRoutes = new Elysia({ prefix: '/reviews' })
-    .post('/', async ({ body }) =>
-        await ReviewService.create(body.courseId, body),
+    .post("/", 
+        async ({ body }) => {
+            // แฮช passcode_pin ก่อนบันทึก
+            body.passcode_pin = await hashPassword(body.passcode_pin);
+
+            // บันทึกข้อมูล
+            return await ReviewService.create(body.courseId, body);
+        }, 
         {
             body: t.Object({
                 courseId: t.Number(),
@@ -34,7 +41,10 @@ export const reviewRoutes = new Elysia({ prefix: '/reviews' })
             const deletedReview = await ReviewService.delete(Number(params.id), passcode_pin);
             return { message: 'Review deleted successfully', deletedReview };
         } catch (error) {
-            return { message: error.message };
+            if (error instanceof Error) {
+                return { message: error.message };
+            }
+            return { message: 'An unknown error occurred' };
         }
     }, {
         body: t.Object({

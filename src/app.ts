@@ -1,7 +1,7 @@
 import { Elysia } from 'elysia'
 import { swagger } from '@elysiajs/swagger'
 import { cors } from '@elysiajs/cors' // <-- นำเข้า cors
-import { api } from './routes/api.ts'
+import { api } from './routes/api'
 
 export const app = new Elysia()
     .use(cors()) // เปิดใช้งาน CORS ก่อนตัวอื่น

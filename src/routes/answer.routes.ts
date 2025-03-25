@@ -1,5 +1,5 @@
 import { Elysia, t } from 'elysia'
-import { AnswerService } from '../services/answer.service.ts'
+import { AnswerService } from '../services/answer.service'
 
 export const answerRoutes = new Elysia({ prefix: '/answers' })
     // GET: ดึงคำตอบทั้งหมด (หรือตามเงื่อนไข)

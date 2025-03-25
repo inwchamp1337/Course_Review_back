@@ -1,4 +1,4 @@
-import prisma from '../db/client.ts'
+import prisma from '../db/client'
 
 export const AnswerService = {
     // ฟังก์ชันใหม่สำหรับดึงข้อมูล
