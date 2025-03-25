@@ -47,49 +47,49 @@ Follow these steps to set up your environment and get the project running:
    git clone https://github.com/inwchamp1337/Course_Review_back.git
    cd Course_Review_back
    ```
-Install Dependencies:
+
 
 If you're using Bun as your runtime, install the required dependencies:
-
-    ```bash
-
+    **Install Dependencies:**
+```bash
     bun install
-    ```
+```
+    
 
+## Database Migration
 
-Set Up Prisma:
+Run the following command to apply database migrations:
 
-Ensure Your Database URL is Correct:
-Update the DATABASE_URL in your .env file with the correct connection string to your PostgreSQL database.
+```bash
+npx prisma migrate dev --name init
+```
 
-Run Database Migrations:
-Create the initial database schema by running:
+## Generate Prisma Client
 
-    ```bash
+Generate the Prisma client to interact with your database:
 
-    npx prisma migrate dev --name init
-    Generate the Prisma Client:
-    Generate the Prisma client to interact with your database:
-    ```
+```bash
+npx prisma generate
+```
 
-    ```bash
-    npx prisma generate
-    Start the Development Server:
-    ```
+## Start the Development Server
+
 Run the following command to start your development server:
 
-    ```bash
-    คัดลอก
-    แก้ไข
-    bun run dev
-    Access the Application:
-    ```
-Open your browser and navigate to http://localhost:3000 to see your application in action.
+```bash
+bun run dev
+```
+
+## Access the Application
+
+Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to see your application in action.
+
+---
 
 ## Environment Variables
 
 Before running the application, ensure you have set up your **.env** file. This file should include your configuration variables such as database connection strings, API keys, and other environment-specific settings.
----
+
 ### Create a `.env` File
 
 In the root directory of the project, create a file named **.env**.
@@ -105,6 +105,7 @@ POSTGRES_PASSWORD=
 POSTGRES_DB=
 ```
 
+---
 
 ## Contributing
 
