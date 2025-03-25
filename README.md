@@ -106,7 +106,14 @@ POSTGRES_DB=
 ```
 
 ---
+## Building the Docker Image
 
+To build the Docker image, run the following command in the root directory of your project (where the Dockerfile is located):
+
+```sh
+docker build -t kmitlcore .
+```
+---
 ## Contributing
 
 Contributions are welcome! If you have any improvements or fixes, please feel free to fork the repository and submit a pull request. For any issues or suggestions, please open an issue in the GitHub repository.
