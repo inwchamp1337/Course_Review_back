@@ -1,6 +1,7 @@
 # KMITLCORE - Course Review Backend
 https://kmitlcore.vercel.app/
 KMITLCORE is a backend system designed for managing course reviews. It provides a structured API for students to share feedback on courses. Built with a focus on performance, security, and scalability, this project leverages modern technologies including Elysia with the Bun runtime, TypeScript, Prisma, Docker, and PostgreSQL.
+![image](https://github.com/user-attachments/assets/af906297-816a-4113-acc3-dbe64a4044df)
 
 ---
 ## Table of Contents
