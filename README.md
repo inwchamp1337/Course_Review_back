@@ -1,4 +1,4 @@
-Hi
+
 
 # KMITLCORE - Course Review Backend
 https://kmitlcore.vercel.app/
